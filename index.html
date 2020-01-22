@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+
+<html>
+	<script>
+		game();
+
+		function playerSelection() {
+			let check = false;
+
+			while (!Boolean(check)) {
+				let playerChoice = prompt("Rock, Paper, or Scissors?: ");
+
+				if (playerChoice.toLowerCase() == "rock" ||
+				    playerChoice.toLowerCase() == "paper" || 
+				    playerChoice.toLowerCase() == "scissors") {
+					check = true;
+					return playerChoice;
+
+				}
+				else {
+					alert("Please select Rock, Paper, or Scissors");
+				}
+			}
+		}
+
+		function computerPlay() {
+			switch (Math.floor(Math.random() * 3) + 1) {
+				case 1:
+					return "Rock";
+					break;
+				case 2:
+					return "Paper";
+					break;
+				case 3:
+					return "Scissors";
+					break;
+			}
+		}
+
+		function playRound(playerSelection, computerSelection) {
+			let playerChoice = playerSelection.charAt(0).toUpperCase() + 
+					   playerSelection.toLowerCase().substr(1, playerSelection.length - 1);
+
+			if (playerChoice == "rock") {
+				if (computerSelection == "rock") {
+					alert("It's a tie.");
+				}
+				else if (computerSelection == "paper") {
+					alert("You lose...");
+				}
+				else {
+					alert("You win!");
+				} 
+			}
+
+			if (playerChoice == "paper") {
+				if (computerSelection == "rock") {
+					alert("You win!");
+				}	
+				else if (computerSelection == "paper") {
+					alert("It's a tie.");
+				}
+				else {
+					alert("You lose...");
+				} 
+			}
+
+			if (playerChoice == "rock") {
+				if (computerSelection == "rock") {
+					alert("You lose...");
+				}
+				else if (computerSelection == "paper") {
+					alert("You win!");
+				}
+				else {
+					alert("It's a tie.");
+				} 
+			}
+		}
+
+		function game() {
+			while (doRound().toLowerCase().charAt(0) == "y") {
+				playRound(playerSelection(), computerPlay());
+			}		
+
+			function doRound() {
+				let check = false;
+				
+				while (!Boolean(check)) {
+					let cmd = prompt("Play a round? (Yes/No): ");
+					
+					if (cmd.toLowerCase().charAt(0) == "y" || cmd.toLowerCase().charAt(0) == "n") {
+						check = true;
+						return cmd;
+					}
+					else {
+						alert("Please enter Yes or No");
+					}
+				}
+			}
+		}
+	</script>	
+</html>
